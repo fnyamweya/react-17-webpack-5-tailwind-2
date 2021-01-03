@@ -18,16 +18,29 @@ jobs:
     - name: Setup CI/CD Server
       run: |
         sudo apt-get update
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install gh-pages && npm install
-    - name: Run predeploy
+    - run: npm install
+    - name: Predeploy
       run: npm run predeploy
       env:
         CI: false
-    - name: Deploy app
-      run: npm run deploy
+    - name: Deploy
+      run: 
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin https://${github_token}@github.com/${repository}
+        npm run deploy
       env:
-        CI: false
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        repository: ${{ github.repository }}
