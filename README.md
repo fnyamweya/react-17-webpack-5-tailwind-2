@@ -1,6 +1,6 @@
 # react-17-webpack-5-tailwind-2
 
-Webpack 5 boilerplate with React 17, Tailwind 2, using babel, sass, with a hot dev server and an optimized production build
+React Boilerplate with React 17, Webpack 5 , Tailwind 2, using babel, sass, with a hot dev server and an optimized production build
 
 ## Installation
 
@@ -31,7 +31,7 @@ You can view the development server at `localhost:3000`.
 
 - [React](https://reactjs.org/)
 - [webpack](https://webpack.js.org/)
-- [Tailwind 2](https://tailwindcss.com)
+- [TailwindCSS 2](https://tailwindcss.com)
 - [PostCss](https://postcss.org/)
 - [Babel](https://babeljs.io/)
 - [Sass](https://sass-lang.com/)
